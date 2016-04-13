@@ -36,7 +36,8 @@ function Yesterday_YYYYMMDD()
 function GetDayAfter_YYYYMMDD()
 {
     local num=${1:?"引数1に数値が設定されていません。"}
-    date --date "$num + $2days" '+%Y%m%d'
+    local daystr=${2:?"引数2に日付YYYYMMDDが設定されていません。"}
+    date --date="$daystr + $num days" '+%Y%m%d'
     return $?
 }
 
@@ -44,7 +45,8 @@ function GetDayAfter_YYYYMMDD()
 function GetDayBefore_YYYYMMDD()
 {
     local num=${1:?"引数1に数値が設定されていません。"}
-    date --date "$num + $2days ago" '+%Y%m%d'
+    local daystr=${2:?"引数2に日付YYYYMMDDが設定されていません。"}    
+    date --date="$daystr + $num days ago" '+%Y%m%d'
     return $?
 }
 
@@ -52,7 +54,7 @@ function GetDayBefore_YYYYMMDD()
 #今月初日
 function FirstDay_YYYYMMDD()
 {
-    date --date "`date '+%Y%m01'`" '+%Y%m%d'
+    date --date="`date '+%Y%m01'`" '+%Y%m%d'
     return $?
 }
 
